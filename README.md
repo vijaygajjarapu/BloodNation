@@ -2,7 +2,7 @@
 
 A blood donor and emergency blood-request platform. India first, designed for other countries later. It will ship as a responsive web app (with an installable web app), Android and iOS apps, and a separate web admin portal.
 
-> **Status: early setup.** No application features exist yet. This README documents how to prepare a Windows computer and is updated as each setup step is completed and verified.
+> **Status: workspace ready, local services blocked on the setup computer.** No application features exist yet. This README documents how to prepare a Windows computer and is updated as each setup step is completed and verified.
 >
 > Steps marked **(not yet verified)** were taken from official documentation but have not been confirmed on a real machine yet.
 
@@ -29,9 +29,22 @@ Outside services (SMS, email, push, maps, payments, file scanning, protected cal
 
 ## 2. Repository areas (names to be confirmed)
 
-backend · web · admin · mobile · shared (API contract, design tokens) · docs · local-development and infrastructure configuration.
+```
+bloodnation/
+├── backend/            Django server (managed with uv)
+├── web/                Next.js website and installable web app
+├── admin/              separate React (Vite) admin portal
+├── mobile/             Flutter app for Android and iOS
+├── shared/
+│   ├── api-contract/   OpenAPI description of how the apps talk to the server
+│   └── design-tokens/  shared colors, spacing and type sizes
+├── docs/               Master Spec, architecture, decisions, open questions
+├── infra/              local service configuration (database, cache)
+├── scripts/            planned check and setup scripts
+├── pnpm-workspace.yaml, package.json, .gitignore, .env.example
+```
 
-The exact folder names are decided when the repository is initialized.
+Each folder currently holds only a short placeholder file. No application code exists yet.
 
 ## 3. Windows setup (PowerShell)
 
@@ -246,8 +259,17 @@ wsl --status
 - [x] uv installed and verified (0.13.6)
 - [ ] WSL installed (restart done). **BLOCKED on the tested computer, see section 4.1**
 - [ ] Docker Desktop installed and verified (licensing terms checked). Depends on WSL, see section 4.1
-- [ ] Repository initialized, with no secrets committed
-- [ ] Workspace foundation created and opened successfully
+- [x] Repository initialized on `main` and pushed to GitHub, with no secrets committed (`.env` is not tracked)
+- [x] Workspace foundation created and verified (folder tree, pnpm workspace file, `.gitignore`, `.env.example`)
+- [ ] Local services (PostgreSQL with PostGIS, Redis) running. **Not possible yet on the setup computer, see section 4.1**
+- [ ] Android emulator. Depends on the same virtualization feature, see section 4.1
+
+### Open items
+
+- Local services cannot run on the first setup computer (Windows 10 Pro, Intel Core i3-5015U, BIOS from 2015) because the Virtual Machine Platform feature stops Windows from starting. Options (BIOS update, another way to run the database, or another machine) are undecided.
+- Windows 10 no longer receives regular security updates unless enrolled in Microsoft's extended updates. Docker Desktop support for Windows 10 is not yet verified.
+- Availability of the Blood Nation domain, app store names and trademark has not been checked.
+- Hosting is still undecided.
 
 ## 7. Project documents to keep in the `docs` area
 
