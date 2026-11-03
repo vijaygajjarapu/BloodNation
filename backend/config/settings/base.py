@@ -1,4 +1,5 @@
 """Settings shared by every environment. Secrets and debug are set per environment."""
+
 from pathlib import Path
 
 from config.env import env_str

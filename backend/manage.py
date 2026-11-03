@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Django command-line entry point. Local development uses config.settings.local."""
+
 import os
 import sys
 

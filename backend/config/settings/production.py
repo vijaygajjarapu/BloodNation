@@ -1,4 +1,5 @@
 """Production. Fails safely at start-up if required values are missing."""
+
 from config.env import env_bool, env_list, require_env
 
 from .base import *  # noqa: F403
