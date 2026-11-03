@@ -1,4 +1,5 @@
 """Small helpers for reading settings from environment variables."""
+
 import os
 
 from django.core.exceptions import ImproperlyConfigured
